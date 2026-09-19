@@ -9,9 +9,12 @@ import { usePolling } from './hooks/usePolling'
 import { fetchCounts, fetchSchedule } from './lib/api'
 import { labStatus } from './lib/schedule'
 
+// Los ids deben coincidir con SIGN_NODE_NAME en FabLabSign/config.h
+// de cada letrero (sin espacios: FirebaseClient arma la peticion HTTP
+// pegando la ruta tal cual, un espacio sin escapar rompe la peticion).
 const SIGNS = [
-  { id: 'LETRERO 1', label: 'Letrero 1', labName: 'FabLab' },
-  { id: 'LETRERO 2', label: 'Letrero 2', labName: 'Vinculación con la Sociedad' },
+  { id: 'LETRERO_1', label: 'Letrero 1', labName: 'FabLab' },
+  { id: 'LETRERO_2', label: 'Letrero 2', labName: 'Vinculación con la Sociedad' },
 ]
 
 const SCHEDULE_REFRESH_MS = 5 * 60 * 1000
