@@ -10,8 +10,8 @@ import { fetchCounts, fetchSchedule } from './lib/api'
 import { labStatus } from './lib/schedule'
 
 const SIGNS = [
-  { id: 'LETRERO 1', label: 'Letrero 1' },
-  { id: 'LETRERO 2', label: 'Letrero 2' },
+  { id: 'LETRERO 1', label: 'Letrero 1', labName: 'FabLab' },
+  { id: 'LETRERO 2', label: 'Letrero 2', labName: 'Vinculación con la Sociedad' },
 ]
 
 const SCHEDULE_REFRESH_MS = 5 * 60 * 1000
@@ -39,12 +39,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-white">
-      <Header />
+      <Header sign={activeSign} />
 
       <main className="mx-auto max-w-6xl space-y-6 px-6 py-8">
         <SignSwitcher signs={SIGNS} active={activeSignId} onChange={setActiveSignId} />
 
-        <StatusHero status={status} signLabel={activeSign.label} now={now} />
+        <StatusHero status={status} sign={activeSign} now={now} />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <div className="lg:col-span-3">

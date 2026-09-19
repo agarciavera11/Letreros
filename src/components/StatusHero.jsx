@@ -24,7 +24,7 @@ const STATUS_META = {
   },
 }
 
-export default function StatusHero({ status, signLabel, now }) {
+export default function StatusHero({ status, sign, now }) {
   const meta = STATUS_META[status] ?? STATUS_META.closed
   const Icon = meta.icon
 
@@ -35,7 +35,7 @@ export default function StatusHero({ status, signLabel, now }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
-            {signLabel}
+            {sign.labName} · {sign.label}
           </p>
           <p className="mt-1 text-3xl font-extrabold sm:text-4xl">{meta.label}</p>
           <p className="mt-2 text-white/90">{meta.detail}</p>

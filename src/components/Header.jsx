@@ -1,6 +1,6 @@
 import { Radio } from 'lucide-react'
 
-export default function Header() {
+export default function Header({ sign }) {
   return (
     <header className="relative overflow-hidden bg-gradient-to-br from-blue-800 via-blue-600 to-sky-500 text-white">
       <div className="pointer-events-none absolute inset-0 opacity-25 [background:radial-gradient(circle_at_15%_20%,white,transparent_35%),radial-gradient(circle_at_85%_-10%,white,transparent_30%)]" />
@@ -8,14 +8,14 @@ export default function Header() {
         <div className="flex items-center gap-2 text-blue-100">
           <Radio className="h-4 w-4 animate-pulse" />
           <span className="text-xs font-semibold uppercase tracking-widest">
-            Monitoreo en vivo
+            Monitoreo en vivo · {sign.label}
           </span>
         </div>
         <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">
-          Laboratorio FabLab
+          Laboratorio {sign.labName}
         </h1>
         <p className="mt-3 max-w-xl text-blue-100">
-          Estado, horario y estadísticas de los letreros inteligentes del
+          Estado, horario y estadísticas del letrero inteligente de este
           laboratorio, actualizados en tiempo real.
         </p>
       </div>
