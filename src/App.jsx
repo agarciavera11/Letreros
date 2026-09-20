@@ -5,6 +5,7 @@ import Header from './components/Header'
 import ScheduleGrid from './components/ScheduleGrid'
 import SignSwitcher from './components/SignSwitcher'
 import StatusHero from './components/StatusHero'
+import TrendChart from './components/TrendChart'
 import { usePolling } from './hooks/usePolling'
 import { fetchCounts, fetchSchedule } from './lib/api'
 import { labStatus } from './lib/schedule'
@@ -57,6 +58,8 @@ export default function App() {
             <CountersPanel counts={counts.data} now={now} />
           </div>
         </div>
+
+        <TrendChart counts={counts.data} />
       </main>
 
       <Footer
