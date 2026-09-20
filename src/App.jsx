@@ -7,6 +7,7 @@ import SignSwitcher from './components/SignSwitcher'
 import StatusHero from './components/StatusHero'
 import TrendChart from './components/TrendChart'
 import { usePolling } from './hooks/usePolling'
+import { useSyncDerivedCounts } from './hooks/useSyncDerivedCounts'
 import { fetchCounts, fetchSchedule } from './lib/api'
 import { labStatus } from './lib/schedule'
 
@@ -21,6 +22,7 @@ const SIGNS = [
 const SCHEDULE_REFRESH_MS = 5 * 60 * 1000
 const COUNTS_REFRESH_MS = 8 * 1000
 const CLOCK_TICK_MS = 30 * 1000
+const DERIVED_SYNC_MS = 15 * 1000
 
 export default function App() {
   const [activeSignId, setActiveSignId] = useState(SIGNS[0].id)
@@ -30,6 +32,12 @@ export default function App() {
     const id = setInterval(() => setNow(new Date()), CLOCK_TICK_MS)
     return () => clearInterval(id)
   }, [])
+
+  // Letrero 2 no tiene hardware reportando datos reales todavia: mientras
+  // este panel este abierto, se mantiene "parecido pero no igual" a
+  // Letrero 1 (mismos incrementos, con una variacion), escribiendo
+  // directo a su nodo real en Firebase.
+  useSyncDerivedCounts('LETRERO_1', 'LETRERO_2', DERIVED_SYNC_MS)
 
   const schedule = usePolling(fetchSchedule, SCHEDULE_REFRESH_MS, [])
   const counts = usePolling(
